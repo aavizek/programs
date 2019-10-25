@@ -1,0 +1,21 @@
+class Solution {
+public:
+    bool isValid(string s) {
+        stack<char> st;
+        map<char, char> param_map = {
+            {')', '('},
+            {']', '['},
+            {'}', '{'}
+        };
+        for(char c: s){
+            if(!param_map.count(c)){
+                st.push(c);
+            }
+            else if(!st.empty() && param_map[c] == st.top()){
+                st.pop();
+            }
+            else return false;
+        }
+        return st.empty();
+    }
+};
